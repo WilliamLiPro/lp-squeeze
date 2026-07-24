@@ -27,11 +27,28 @@ On cardinality-constrained least squares where closed-form subproblem solutions 
 
 As $p$ decreases from $2$ to $0_+$, the feasible region progressively converges toward sparse subspaces:
 
+<p align="center">
+  <img src="figures/lp_sphere_and_x_path_k1.png" width="45%" alt="k=1">
+  <img src="figures/lp_sphere_and_x_path_k2.png" width="45%" alt="k=2">
+</p>
+
+<p align="center"> Evolution of the feasible set and typical $x$ as $p$ decreases from $2$ to $0_+$. 
+(left) $k=1$: the feasible set converges progressively toward the coordinate axes, and $x$ approaches $\|x\|_0=1$. 
+(right) $k=2$: the feasible set converges progressively toward the three coordinate planes, and $x$ approaches $\|x\|_0=2$.</p>
+
 | $k=1$ | $k=2$ |
 |:-----:|:-----:|
 | Feasible set converges toward coordinate axes; $x$ approaches $\|x\|_0 = 1$ | Feasible set converges toward coordinate planes; $x$ approaches $\|x\|_0 = 2$ |
 
 ### Soft Squeezing vs. Hard Thresholding
+
+<p align="center">
+  <img src="figures/mechanism_compare.png" width="80%" alt="Mechanism Comparison">
+</p>
+
+<p align="center"> Comparison of hard thresholding and soft squeezing. 
+(a) Hard Thresholding: non-support entries within dead zone (red) are immediately zeroed out. 
+(b) Soft Squeezing: non-support entries in the squeezing zone (orange) are progressively compressed rather than zeroed out. As $p \to 0_+$, the squeezing operator asymptotically recovers the hard thresholding.</p>
 
 | | Hard Thresholding (IHT) | Soft Squeezing ($\ell_p$ Squeeze) |
 |:---|:---|:---|
@@ -42,11 +59,29 @@ As $p$ decreases from $2$ to $0_+$, the feasible region progressively converges 
 
 ---
 
+## Algorithm Behavior: $\ell_p$Squeeze vs. IHT
+
+<p align="center">
+  <img src="figs/support_size_and_nonsupport_energy.png" width="48%" alt="Support Size and Non-support Energy">
+  <img src="figs/entries_all.png" width="48%" alt="Normalized Absolute Weights">
+</p>
+
+<p align="center"> Comparison of $\ell_p$Squeeze and IHT. 
+(left) Support size and non-support energy: $\ell_p$Squeeze (orange) exhibits a gradual decay in support size and a smooth variation in non-support energy, whereas IHT (blue) enforces a fixed support size and immediately zeros out all non-support energy after the first hard-thresholding projection. 
+(right) Normalized absolute weights: IHT updates the support set only when an existing entry decays to nearby zero, causing prolonged stagnation of support set; $\ell_p$Squeeze replaces a support entry once it falls below the largest non-support entry, enabling continuous refinement.</p>
+
 ## Experiments
 
 ### TCGA Pan-Cancer Classification
 
 We evaluate $\ell_p$ Squeeze on the TCGA Pan-Cancer dataset under varying sparsity levels $\alpha$.
+
+<p align="center">
+  <img src="figs/tcga_loss_curve_0.0001.png" width="48%" alt="TCGA alpha=1e-4">
+  <img src="figs/tcga_loss_curve_0.00025.png" width="48%" alt="TCGA alpha=2.5e-4">
+</p>
+
+<p align="center"> Convergence curves for varying target non-zero ratios on the TCGA Pan-Cancer classification. (left) $\alpha = 1\times10^{-4}$, (right) $\alpha = 2.5\times10^{-4}$.</p>
 
 **Convergence Curves:**
 
@@ -75,7 +110,7 @@ If you find this work useful, please consider citing:
 ```bibtex
 @article{li2026lp,
   title={$\ell_p$Squeeze: Gradual Sparsification via $\ell_p$-Norm Budget},
-  author={Li, ...},
-  journal={...},
+  author={Weipeng Li and Xiaogang Yang},
+  journal={Proceedings of 2026 CAAI International Conference on Artificial Intelligence},
   year={2026}
 }

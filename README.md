@@ -28,8 +28,8 @@ On cardinality-constrained least squares where closed-form subproblem solutions 
 As $p$ decreases from $2$ to $0_+$, the feasible region progressively converges toward sparse subspaces:
 
 <p align="center">
-  <img src="figures/lp_sphere_and_x_path_k1.png" width="45%" alt="k=1">
-  <img src="figures/lp_sphere_and_x_path_k2.png" width="45%" alt="k=2">
+  <img src="figures/lp_sphere_and_x_path_k1.pdf" width="45%" alt="k=1">
+  <img src="figures/lp_sphere_and_x_path_k2.pdf" width="45%" alt="k=2">
 </p>
 
 <p align="center"> Evolution of the feasible set and typical $x$ as $p$ decreases from $2$ to $0_+$. 
@@ -43,7 +43,7 @@ As $p$ decreases from $2$ to $0_+$, the feasible region progressively converges 
 ### Soft Squeezing vs. Hard Thresholding
 
 <p align="center">
-  <img src="figures/mechanism_compare.png" width="80%" alt="Mechanism Comparison">
+  <img src="figures/mechanism_compare.pdf" width="80%" alt="Mechanism Comparison">
 </p>
 
 <p align="center"> Comparison of hard thresholding and soft squeezing. 
@@ -62,8 +62,8 @@ As $p$ decreases from $2$ to $0_+$, the feasible region progressively converges 
 ## Algorithm Behavior: $\ell_p$Squeeze vs. IHT
 
 <p align="center">
-  <img src="figs/support_size_and_nonsupport_energy.png" width="48%" alt="Support Size and Non-support Energy">
-  <img src="figs/entries_all.png" width="48%" alt="Normalized Absolute Weights">
+  <img src="figs/support_size_and_nonsupport_energy.pdf" width="48%" alt="Support Size and Non-support Energy">
+  <img src="figs/entries_all.pdf" width="48%" alt="Normalized Absolute Weights">
 </p>
 
 <p align="center"> Comparison of $\ell_p$Squeeze and IHT. 
@@ -77,8 +77,8 @@ As $p$ decreases from $2$ to $0_+$, the feasible region progressively converges 
 We evaluate $\ell_p$ Squeeze on the TCGA Pan-Cancer dataset under varying sparsity levels $\alpha$.
 
 <p align="center">
-  <img src="figs/tcga_loss_curve_0.0001.png" width="48%" alt="TCGA alpha=1e-4">
-  <img src="figs/tcga_loss_curve_0.00025.png" width="48%" alt="TCGA alpha=2.5e-4">
+  <img src="figs/tcga_loss_curve_0.0001.pdf" width="48%" alt="TCGA alpha=1e-4">
+  <img src="figs/tcga_loss_curve_0.00025.pdf" width="48%" alt="TCGA alpha=2.5e-4">
 </p>
 
 <p align="center"> Convergence curves for varying target non-zero ratios on the TCGA Pan-Cancer classification. (left) $\alpha = 1\times10^{-4}$, (right) $\alpha = 2.5\times10^{-4}$.</p>

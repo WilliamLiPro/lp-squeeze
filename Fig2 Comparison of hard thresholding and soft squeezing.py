@@ -90,7 +90,7 @@ def show_difference(m, n, use_nonzero_fraction=0.1, sample_e_r=[0, 0.1, 0.2, 0.3
     ax2.grid(True, alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig(f'output/mechanism_compare.pdf', bbox_inches='tight', dpi=600)
+    plt.savefig(f'figures/mechanism_compare.pdf', bbox_inches='tight', dpi=600)
     plt.show()
 
 

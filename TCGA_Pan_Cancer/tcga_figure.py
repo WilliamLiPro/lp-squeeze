@@ -23,9 +23,9 @@ def show_table(
 ):
     method_list = [
         "IHT-AdamW",
-        "Iterative-HTP-AdamW",
-        "CGiht-AdamW",
-        "FISTA",
+        # "Iterative-HTP-AdamW",
+        # "CGiht-AdamW",
+        # "FISTA",
         "LpISTs2-AdamW",
     ]
     table = []
@@ -48,16 +48,16 @@ def show_loss_curve(
         alpha_p, u, is_save=False):
     method_list = [
         "IHT-AdamW",
-        "Iterative-HTP-AdamW",
-        "CGiht-AdamW",
-        "FISTA",
+        # "Iterative-HTP-AdamW",
+        # "CGiht-AdamW",
+        # "FISTA",
         "LpISTs2-AdamW",
     ]
     name_list = [
         "IHT-AdamW",
-        "Iterative-HTP-AdamW",
-        "CGIHT-AdamW",
-        "FISTA",
+        # "Iterative-HTP-AdamW",
+        # "CGIHT-AdamW",
+        # "FISTA",
         "$\ell_p$Squeeze-AdamW",
     ]
     loss_list = []
@@ -88,6 +88,6 @@ def show_loss_curve(
 
 
 if __name__ == "__main__":
-    show_table()
+    # show_table()
     show_loss_curve(alpha_p=0.00025, u=0.18, is_save=True)
-    show_loss_curve(alpha_p=0.0001, u=0.2, is_save=True)
+    # show_loss_curve(alpha_p=0.0001, u=0.2, is_save=True)

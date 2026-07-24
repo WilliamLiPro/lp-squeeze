@@ -8,8 +8,8 @@ from tqdm import tqdm
 from lp_ist import LpISTs, LpISTs2, LpISTx
 # from lpsqueeze import lpSqueeze, lpSqueezes, lpSqueezesM, lpSqueeze2
 from iht import IHT
-from Cardinality_Constrained_Least_Squares import FISTA, prox_l1
-from TCGA_Pan_Cancer import CGIHT
+# from Cardinality_Constrained_Least_Squares import FISTA, prox_l1
+# from TCGA_Pan_Cancer import CGIHT
 from TCGA_pancan_HiSeq_sparse_nn import Mlp, load_data_and_preprocess, cosine_lambda, TensorDataset
 from utils import real_density, real_support_rate
 from torch.utils.data import DataLoader
@@ -100,11 +100,11 @@ def single_run(
 
     criterion = nn.CrossEntropyLoss()
     method_list = [
-        # "IHT-AdamW",
+        "IHT-AdamW",
         # "Iterative-HTP-AdamW",
         # "CGiht-AdamW",
-        "FISTA",
-        # "LpISTs2-AdamW",
+        # "FISTA",
+        "LpISTs2-AdamW",
     ]
 
     for method in method_list:
@@ -115,24 +115,20 @@ def single_run(
             print(f"running IHT with alpha={nonzero_fraction}")
             constrain = IHT(nonzero_fraction, epoch_st, epoch_end, 0.1)
             constrain.parameters(net, ["linear"])
-        elif 'Iterative-HTP' in method:
-            print(f"running Iterative-HTP with alpha={nonzero_fraction}")
-            constrain = IHT(nonzero_fraction, epoch_st, epoch_end, update_topk_every)
-            constrain.parameters(net, ["linear"])
-        elif 'CGiht' in method:
-            print(f"running CGIHT with alpha={nonzero_fraction}")
-            constrain = CGIHT(nonzero_fraction, epoch_st, epoch_end)
-            constrain.parameters(net, ["linear"])
-        elif 'FISTA' in method:
-            print(f"running FISTA with u={u}")
-            prox = lambda x, t: prox_l1(x, t, u)
-            lin_weight = net.linear_layer.weight
-            idx = torch.topk(lin_weight.data.abs().view(-1), int(init_nonzero_fraction * lin_weight.numel()))[1]
-            lin_weight.data.view(-1)[idx] = 0
-            opt = FISTA([{'params': net.linear_layer.parameters(), "use_fista": True},
-                         {'params': net.out_layers.parameters(), "use_fista": False}],
-                        prox, lr, momentum=0.9)
-            constrain = None
+        # elif 'CGiht' in method:
+        #     print(f"running CGIHT with alpha={nonzero_fraction}")
+        #     constrain = CGIHT(nonzero_fraction, epoch_st, epoch_end)
+        #     constrain.parameters(net, ["linear"])
+        # elif 'FISTA' in method:
+        #     print(f"running FISTA with u={u}")
+        #     prox = lambda x, t: prox_l1(x, t, u)
+        #     lin_weight = net.linear_layer.weight
+        #     idx = torch.topk(lin_weight.data.abs().view(-1), int(init_nonzero_fraction * lin_weight.numel()))[1]
+        #     lin_weight.data.view(-1)[idx] = 0
+        #     opt = FISTA([{'params': net.linear_layer.parameters(), "use_fista": True},
+        #                  {'params': net.out_layers.parameters(), "use_fista": False}],
+        #                 prox, lr, momentum=0.9)
+        #     constrain = None
         elif 'LpISTs2' in method:
             constrain = LpISTs2(nonzero_fraction, epoch_st, epoch_end, p_st, p_end, update_topk_every, relative_zero_h,
                init_nonzero_fraction)
@@ -160,8 +156,8 @@ def single_run(
 
 
 if __name__ == "__main__":
-    single_run(nonzero_fraction=0.0008, init_nonzero_fraction=0.01, u=0.15,)
-    single_run(nonzero_fraction=0.0005, init_nonzero_fraction=0.01, u=0.17,)
+    # single_run(nonzero_fraction=0.0008, init_nonzero_fraction=0.01, u=0.15,)
+    # single_run(nonzero_fraction=0.0005, init_nonzero_fraction=0.01, u=0.17,)
     single_run(nonzero_fraction=0.00025, init_nonzero_fraction=0.01, u=0.18, )
-    single_run(nonzero_fraction=0.0001, init_nonzero_fraction=0.01, u=0.2, )
+    # single_run(nonzero_fraction=0.0001, init_nonzero_fraction=0.01, u=0.2, )
 

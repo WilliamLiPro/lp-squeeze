@@ -1,0 +1,5 @@
+TCGA_Pan_Cancer/tcga_loss_curve_0.00025.pdf
+TCGA_Pan_Cancer/TCGA_pancan_IHT-AdamW_alpha_0.00025.pt
+TCGA_Pan_Cancer/TCGA_pancan_LpISTs2-AdamW_alpha_0.00025.pt
+.idea/
+__pycache__/

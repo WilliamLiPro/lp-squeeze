@@ -130,14 +130,14 @@ def show_multi_lp_sphere_and_x_path(show_ps, r_list, p_list, x_path, load_path=N
 
 
 if __name__ == "__main__":
-    r_list, p_list, x_path = get_r_p_and_x_path(np.array([-1, 0.7, 0.5]), k=2, save_path="output/x_path.npz")
+    r_list, p_list, x_path = get_r_p_and_x_path(np.array([-1, 0.7, 0.5]), k=2)
     show_multi_lp_sphere_and_x_path(
-        [2, 1.5, 1, 0.5, 0.2], None, None, None, load_path="output/x_path.npz",
-        output_name="output/lp_sphere_and_x_path_k2.pdf")
-    r_list, p_list, x_path = get_r_p_and_x_path(np.array([-1, 0.7, 0.5]), k=1, save_path="output/x_path_k1.npz")
+        [2, 1.5, 1, 0.5, 0.2], r_list, p_list, x_path,
+        output_name="figures/lp_sphere_and_x_path_k2.pdf")
+    r_list, p_list, x_path = get_r_p_and_x_path(np.array([-1, 0.7, 0.5]), k=1)
     show_multi_lp_sphere_and_x_path(
-        [2, 1.5, 1, 0.5, 0.2], None, None, None, load_path="output/x_path_k1.npz",
-        output_name="output/lp_sphere_and_x_path_k1.pdf")
+        [2, 1.5, 1, 0.5, 0.2], r_list, p_list, x_path,
+        output_name="figures/lp_sphere_and_x_path_k1.pdf")
 
 
 

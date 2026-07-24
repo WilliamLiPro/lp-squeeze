@@ -6,8 +6,7 @@ import torch.nn as nn
 from torch.optim.lr_scheduler import LambdaLR
 from torch.optim import SGD, NAdam, AdamW
 from tqdm import tqdm
-from lp_ist import LpIST, LpISTx, LpISTs, LpISTs2, LpISTsx
-from lpsqueeze import lpSqueeze, lpSqueezes, lpSqueeze2, lpSqueezes2
+from lp_ist import LpISTs2
 from iht import IHT
 from utils import real_density, real_support_rate
 from torch.utils.data import Dataset, DataLoader
@@ -205,7 +204,7 @@ def train_tcga_lpists(
         lr=0.01,
         device="cuda" if torch.cuda.is_available() else "cpu",
 ):
-    path = "./TCGA-PANCAN-HiSeq-801x20531"
+    path = "../TCGA-PANCAN-HiSeq-801x20531"
     data, labels = load_data_and_preprocess(path)
     x = torch.from_numpy(data.values).to(torch.float).to(device)
     y = torch.from_numpy(labels['Class_encoded'].values).to(torch.long).to(device)
@@ -219,14 +218,9 @@ def train_tcga_lpists(
 
     criterion = nn.CrossEntropyLoss()
     constrain_list = [
-        IHT(nonzero_fraction, epoch_st, epoch_end, 0.1),
-        # LpIST(nonzero_fraction, epoch_st, epoch_end, p_st, p_end, update_topk_every, relative_zero_h, init_nonzero_fraction),
-        # LpISTx(nonzero_fraction, epoch_st, epoch_end, p_st, p_end, update_topk_every, relative_zero_h, init_nonzero_fraction),
-        # LpISTs(nonzero_fraction, epoch_st, epoch_end, p_st, p_end, update_topk_every, relative_zero_h, init_nonzero_fraction),
+        # IHT(nonzero_fraction, epoch_st, epoch_end, 0.1),
         LpISTs2(nonzero_fraction, epoch_st, epoch_end, p_st, p_end, update_topk_every, relative_zero_h,
                init_nonzero_fraction),
-        # lpSqueezes(nonzero_fraction, epoch_st, epoch_end, p_st, p_end, update_topk_every, relative_zero_h,
-        #        init_nonzero_fraction),
     ]
 
     for constrain in constrain_list:
@@ -243,6 +237,8 @@ def train_tcga_lpists(
         loss_list, nonzero_rate_list, support_rate_list, lr_list = simple_trainer(
             net, criterion, opt, lr_scheduler, constrain, dataloader, epochs, device=device)
 
+        if not os.path.exists("./output"):
+            os.makedirs("./output")
         torch.save({"loss_list": loss_list, "nonzero_rate_list": nonzero_rate_list,
                     "support_rate_list": support_rate_list, "lr_list": lr_list},
                    f"./output/TCGA_pancan_HiSeq_sparse_nn_{constrain.__class__.__name__}.pt")
@@ -252,7 +248,7 @@ def test_load_data_and_preprocess():
     """
     test load_data_and_preprocess function
     """
-    path = "E:\Dataset\TCGA-PANCAN-HiSeq-801x20531"
+    path = "../TCGA-PANCAN-HiSeq-801x20531"
     data, labels = load_data_and_preprocess(path)
     assert data is not None
     assert labels is not None
@@ -262,38 +258,3 @@ if __name__ == "__main__":
     # test_load_data_and_preprocess()
     train_tcga_lpists()
 
-"""
-最后一层稠密：
-nonzero_fraction=0.005,
-IHT     100%|██████████| 3200/3200 [00:37<00:00, 86.42it/s, loss=2.26e-07, nonzero rate=5.30e-03, support rate=5.00e-03]
-LpIST   100%|██████████| 3200/3200 [00:44<00:00, 72.41it/s, loss=1.13e-06, nonzero rate=5.30e-03, support rate=5.00e-03]
-LpISTx  100%|██████████| 3200/3200 [00:44<00:00, 71.15it/s, loss=9.74e-06, nonzero rate=5.30e-03, support rate=5.00e-03]
-LpISTs  100%|██████████| 3200/3200 [00:44<00:00, 71.77it/s, loss=1.63e-07, nonzero rate=5.30e-03, support rate=5.00e-03]
-LpISTsx 100%|██████████| 3200/3200 [00:46<00:00, 69.52it/s, loss=3.03e-07, nonzero rate=5.30e-03, support rate=5.00e-03]
-
-nonzero_fraction=0.001,
-IHT     100%|██████████| 3200/3200 [00:37<00:00, 85.20it/s, loss=3.22e-07, nonzero rate=1.30e-03, support rate=1.00e-03]
-LpIST   100%|██████████| 3200/3200 [00:44<00:00, 71.67it/s, loss=4.76e-06, nonzero rate=1.30e-03, support rate=1.00e-03]
-LpISTx  100%|██████████| 3200/3200 [00:45<00:00, 70.41it/s, loss=5.61e-06, nonzero rate=1.30e-03, support rate=1.00e-03]
-LpISTs  100%|██████████| 3200/3200 [00:43<00:00, 73.04it/s, loss=6.84e-07, nonzero rate=1.30e-03, support rate=1.00e-03]
-LpISTsx 100%|██████████| 3200/3200 [00:45<00:00, 70.32it/s, loss=1.97e-06, nonzero rate=1.30e-03, support rate=1.00e-03]
-
-nonzero_fraction=0.0005,
-IHT     100%|██████████| 2400/2400 [00:27<00:00, 88.12it/s, loss=5.83e-06, nonzero rate=8.00e-04, support rate=5.01e-04]
-LpIST   100%|██████████| 2400/2400 [00:32<00:00, 74.84it/s, loss=1.81e-05, nonzero rate=8.00e-04, support rate=5.01e-04]
-LpISTx  100%|██████████| 2400/2400 [00:32<00:00, 73.46it/s, loss=1.70e-03, nonzero rate=8.00e-04, support rate=5.01e-04]
-LpISTs  100%|██████████| 2400/2400 [00:36<00:00, 65.81it/s, loss=1.79e-06, nonzero rate=7.93e-04, support rate=5.01e-04]
-LpISTsx 100%|██████████| 2400/2400 [00:33<00:00, 72.40it/s, loss=1.12e-04, nonzero rate=8.00e-04, support rate=5.01e-04]
-
-nonzero_fraction=0.0002,
-IHT     100%|██████████| 2400/2400 [00:29<00:00, 82.00it/s, loss=2.88e-05, nonzero rate=5.01e-04, support rate=2.01e-04]
-LpIST   100%|██████████| 2400/2400 [00:33<00:00, 72.23it/s, loss=1.09e-04, nonzero rate=5.01e-04, support rate=2.01e-04]
-LpISTs  100%|██████████| 2400/2400 [00:32<00:00, 74.35it/s, loss=2.27e-06, nonzero rate=5.01e-04, support rate=2.01e-04]
-
-nonzero_fraction=0.0001,
-IHT     100%|██████████| 2400/2400 [00:27<00:00, 86.20it/s, loss=1.60e-04, nonzero rate=4.00e-04, support rate=1.00e-04]
-LpIST   100%|██████████| 2400/2400 [00:31<00:00, 75.90it/s, loss=3.61e-03, nonzero rate=4.00e-04, support rate=1.00e-04]
-LpISTx  100%|██████████| 2400/2400 [00:32<00:00, 73.58it/s, loss=4.10e-03, nonzero rate=4.00e-04, support rate=1.00e-04]
-LpISTs  100%|██████████| 2400/2400 [00:29<00:00, 80.07it/s, loss=1.10e-05, nonzero rate=4.00e-04, support rate=1.00e-04]
-LpISTsx 100%|██████████| 2400/2400 [00:32<00:00, 74.55it/s, loss=2.61e-04, nonzero rate=4.00e-04, support rate=1.00e-04]
-"""

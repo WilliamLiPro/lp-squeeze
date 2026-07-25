@@ -41,7 +41,7 @@ As $p$ decreases from $2$ to $0_+$, the feasible region progressively converges 
 
 
 | $k=1$ | $k=2$ |
-|:-----:|:-----:|
+|:-----|:-----|
 | Feasible set converges toward coordinate axes; $x$ approaches $\|x\|_0 = 1$ | Feasible set converges toward coordinate planes; $x$ approaches $\|x\|_0 = 2$ |
 
 ### Soft Squeezing vs. Hard Thresholding
@@ -84,7 +84,7 @@ We evaluate $\ell_p$ Squeeze on the TCGA Pan-Cancer dataset under varying sparsi
   <img src="figures/tcga_loss_curve_0.0001.png" width="45%" alt="TCGA alpha=1e-4">
 </p>
 
-<p align="left"> Convergence curves for varying target non-zero ratios on the TCGA Pan-Cancer classification. (left) $\alpha = 1\times10^{-4}$, (right) $\alpha = 2.5\times10^{-4}$.</p>
+<p align="left"> Convergence curves for varying target non-zero ratios on the TCGA Pan-Cancer classification. $\alpha = 1\times10^{-4}$.</p>
 
 **Convergence Curves:**
 

@@ -1,4 +1,4 @@
-# $\ell_p$ Squeeze: Gradual Sparsification via $\ell_p$-Norm Budget
+# Progressive $\ell_p$-Norm Squeezing for Sparse Optimization
 
 [![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://github.com/WilliamLiPro/lp-squeeze)
 
@@ -112,7 +112,7 @@ If you find this work useful, please consider citing:
 
 ```bibtex
 @article{li2026lp,
-  title={$\ell_p$Squeeze: Gradual Sparsification via $\ell_p$-Norm Budget},
+  title={Progressive $\ell_p$-Norm Squeezing for Sparse Optimization},
   author={Weipeng Li and Xiaogang Yang},
   journal={Proceedings of 2026 CAAI International Conference on Artificial Intelligence},
   year={2026}

@@ -50,7 +50,7 @@ As $p$ decreases from $2$ to $0_+$, the feasible region progressively converges 
   <img src="figures/mechanism_compare.png" width="80%" alt="Mechanism Comparison">
 </p>
 
-<p align="center"> Comparison of hard thresholding and soft squeezing. 
+<p align="left"> Comparison of hard thresholding and soft squeezing. 
 (a) Hard Thresholding: non-support entries within dead zone (red) are immediately zeroed out. 
 (b) Soft Squeezing: non-support entries in the squeezing zone (orange) are progressively compressed rather than zeroed out. As $p \to 0_+$, the squeezing operator asymptotically recovers the hard thresholding.</p>
 

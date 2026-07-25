@@ -88,9 +88,9 @@ We evaluate $\ell_p$ Squeeze on the TCGA Pan-Cancer dataset under varying sparsi
 
 **Convergence Curves:**
 
-| $\alpha = 1\times10^{-4}$ | $\alpha = 2.5\times10^{-4}$ |
-|:--:|:--:|
-| Faster convergence vs. IHT variants | Faster convergence vs. IHT variants |
+| $\alpha = 1\times10^{-4}$ |
+|:--:|
+| Faster convergence vs. IHT variants |
 
 **Final Loss Comparison:**
 

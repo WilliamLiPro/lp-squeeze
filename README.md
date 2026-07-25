@@ -35,7 +35,7 @@ As $p$ decreases from $2$ to $0_+$, the feasible region progressively converges 
   <img src="figures/lp_sphere_and_x_path_k2.png" width="80%" alt="k=2">
 </p>
 
-<p align="center"> Evolution of the feasible set and typical $x$ as $p$ decreases from $2$ to $0_+$. 
+<p align="left"> Evolution of the feasible set and typical $x$ as $p$ decreases from $2$ to $0_+$. 
 (top) $k=1$: the feasible set converges progressively toward the coordinate axes, and $x$ approaches $\|x\|_0=1$. 
 (bottom) $k=2$: the feasible set converges progressively toward the three coordinate planes, and $x$ approaches $\|x\|_0=2$.</p>
 
@@ -63,16 +63,16 @@ As $p$ decreases from $2$ to $0_+$, the feasible region progressively converges 
 
 ---
 
-## Algorithm Behavior: $\ell_p$Squeeze vs. IHT
+## Algorithm Behavior: $\ell_p$ Squeeze vs. IHT
 
 <p align="center">
   <img src="figures/support_size_and_nonsupport_energy.png" width="45%" alt="Support Size and Non-support Energy">
   <img src="figures/entries_all.png" width="45%" alt="Normalized Absolute Weights">
 </p>
 
-<p align="center"> Comparison of $\ell_p$Squeeze and IHT. 
-(left) Support size and non-support energy: $\ell_p$Squeeze (orange) exhibits a gradual decay in support size and a smooth variation in non-support energy, whereas IHT (blue) enforces a fixed support size and immediately zeros out all non-support energy after the first hard-thresholding projection. 
-(right) Normalized absolute weights: IHT updates the support set only when an existing entry decays to nearby zero, causing prolonged stagnation of support set; $\ell_p$Squeeze replaces a support entry once it falls below the largest non-support entry, enabling continuous refinement.</p>
+<p align="left"> Comparison of $\ell_p$ Squeeze and IHT. 
+(left) Support size and non-support energy: $\ell_p$ Squeeze (orange) exhibits a gradual decay in support size and a smooth variation in non-support energy, whereas IHT (blue) enforces a fixed support size and immediately zeros out all non-support energy after the first hard-thresholding projection. 
+(right) Normalized absolute weights: IHT updates the support set only when an existing entry decays to nearby zero, causing prolonged stagnation of support set; $\ell_p$ Squeeze replaces a support entry once it falls below the largest non-support entry, enabling continuous refinement.</p>
 
 ## Experiments
 
@@ -84,7 +84,7 @@ We evaluate $\ell_p$ Squeeze on the TCGA Pan-Cancer dataset under varying sparsi
   <img src="figures/tcga_loss_curve_0.0001.png" width="45%" alt="TCGA alpha=1e-4">
 </p>
 
-<p align="center"> Convergence curves for varying target non-zero ratios on the TCGA Pan-Cancer classification. (left) $\alpha = 1\times10^{-4}$, (right) $\alpha = 2.5\times10^{-4}$.</p>
+<p align="left"> Convergence curves for varying target non-zero ratios on the TCGA Pan-Cancer classification. (left) $\alpha = 1\times10^{-4}$, (right) $\alpha = 2.5\times10^{-4}$.</p>
 
 **Convergence Curves:**
 

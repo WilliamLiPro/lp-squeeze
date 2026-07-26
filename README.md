@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/license-GPL-green.svg)](LICENSE)
 [![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://github.com/WilliamLiPro/lp-squeeze)
 
-> **$\ell_p$Squeeze**: A soft sparsification method that gradually compresses non-support entries via an $\ell_p$-norm budget, avoiding the premature zeroing-out problem of Iterative Hard Thresholding (IHT).
+> **$\ell_p$ Squeeze**: A soft sparsification method that gradually compresses non-support entries via an $\ell_p$-norm budget, avoiding the premature zeroing-out problem of Iterative Hard Thresholding (IHT).
 
 ---
 
@@ -24,14 +24,14 @@
 
 Sparse optimization underpins compressed sensing, feature selection, and sparse neural networks. Iterative Hard Thresholding (IHT) enforces sparsity via a discontinuous projection that abruptly zeros out small entries, risking premature discarding of significant components.
 
-**$\ell_p$Squeeze** mitigates this by:
+**$\ell_p$ Squeeze** mitigates this by:
 
 - Replacing the $\ell_0$ constraint with an explicit $\ell_p$-norm budget
 - Gradually decreasing $p \to 0_+$ while shrinking the support size
 - Progressively evolving the feasible region toward sparse subspaces
 - Compressing (rather than zeroing out) non-support entries, allowing them to re-enter the support set in later iterations
 
-On cardinality-constrained least squares where closed-form subproblem solutions exist, $\ell_p$Squeeze performs comparably to IHT; on **TCGA pan-cancer classification** and **sparse ViT-B/16 training on ImageNet-1K**, it exceeds IHT and its variants with faster convergence and higher accuracy, surpassing existing state-of-the-art approaches.
+On cardinality-constrained least squares where closed-form subproblem solutions exist, $\ell_p$ Squeeze performs comparably to IHT; on **TCGA pan-cancer classification** and **sparse ViT-B/16 training on ImageNet-1K**, it exceeds IHT and its variants with faster convergence and higher accuracy, surpassing existing state-of-the-art approaches.
 
 ## 🛠️ Installation
 
